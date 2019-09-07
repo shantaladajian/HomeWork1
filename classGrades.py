@@ -28,6 +28,7 @@ class Student:
 
 
     def getCurrentGrade(self):
+        #as discussed in the class - the multiplied constants (2, 3, 4, 2) don't make sense
         finalParticipation = float(self.Participation * 2 *self.participation)
         finalHomework = float(self.Homework * 3 * self.homework)
         finalQuizzes = float(self.Quizzes * 4 * self.quizzes)

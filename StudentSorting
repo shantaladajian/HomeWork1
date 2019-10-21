@@ -1,0 +1,73 @@
+class students:
+    def __init__(self, name=None, gpa=None):
+        self.name = name
+        self.gpa = gpa
+        self.next = None
+
+class student:
+    def __init__(self):
+        self.__head = None
+
+    def setHead(self, newname, newgpa):
+        self.__head = students(newname, newgpa)
+
+    def display(self):
+        printstudent = self.__head
+        print("Students with a GPA > 3.4 are: ")
+        while printstudent is not None:
+            if float(printstudent.gpa) > 3.4:
+                print (printstudent.name, printstudent.gpa)
+            printstudent = printstudent.next
+        print("----------")
+
+    def sortgpa(self):
+        Student = self.__head
+        gpas=[]
+        names=[]
+        print("The students with ascending GPAs:")
+        while Student is not None:
+            gpas.append(Student.gpa)
+            Student= Student.next
+        for i in range(len(gpas)):
+            i = 0
+            for j in range(len(gpas) - 1 - i):
+                if gpas[j] > gpas[j + 1]:
+                    gpas[j], gpas[j + 1] = gpas[j + 1], gpas[j]
+        print(gpas)
+        while Student is not None:
+            for k in range(len(gpas)):
+                if float(gpas[k]) == float(Student.gpa):
+                    names.append(Student.name)
+            Student=Student.next
+        print(names)
+
+    def append(self, newname, newgpa):
+        temp = self.__head
+        while temp.next is not None:
+            temp = temp.next
+
+        newStudent = students(newname, newgpa)
+        temp.next = newStudent
+
+    def addAtBegining(self, newname, newgpa):
+        newStudent = students(newname, newgpa)
+        newStudent.next = self.__head
+        self.__head = newStudent
+
+def main():
+    my_students = student()
+
+    my_students.setHead("Shantal Adajian", 2)
+
+    my_students.append("Amaras Mahrabi", 2.4)
+    my_students.append("Ani Zadikian", 3.6)
+    my_students.append("Arthur Sargsyan", 4)
+    my_students.append("Aspet Davoodi",3.5 )
+    my_students.append("Grigor Tukharyan", 3.8)
+
+    my_students.addAtBegining("Gor Isoyan" , 3)
+
+    my_students.display()
+    my_students.sortgpa()
+
+main()

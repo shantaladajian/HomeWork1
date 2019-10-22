@@ -20,26 +20,22 @@ class student:
             printstudent = printstudent.next
         print("----------")
 
-    def sortgpa(self):
-        Student = self.__head
-        gpas=[]
-        names=[]
-        print("The students with ascending GPAs:")
-        while Student is not None:
-            gpas.append(Student.gpa)
-            Student= Student.next
-        for i in range(len(gpas)):
-            i = 0
-            for j in range(len(gpas) - 1 - i):
-                if gpas[j] > gpas[j + 1]:
-                    gpas[j], gpas[j + 1] = gpas[j + 1], gpas[j]
-        print(gpas)
-        while Student is not None:
-            for k in range(len(gpas)):
-                if float(gpas[k]) == float(Student.gpa):
-                    names.append(Student.name)
-            Student=Student.next
-        print(names)
+    # def sortgpa(self):
+    #     head=self.head
+    #     currfix=self.__head
+    #     currelem=currfix.next
+    #     if currfix>currelem:
+    #         currfix.next=currelem.next
+    #         currelem.next=currfix
+    #     else:
+            # newcurrelem=currelem.next
+            # while newcurrelem is not None:
+            #     if currfix>newcurrelem:
+            #         tmp=newcurrelem.next
+            #         newcurrelem.next=currfix.next
+            #         currelem.next.next=currfix
+            #         currfix.next=tmp
+            #     newcurrelem=newcurrelem.next
 
     def append(self, newname, newgpa):
         temp = self.__head

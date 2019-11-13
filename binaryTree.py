@@ -86,11 +86,39 @@ class BST:
         right_height = self._height(node.right, cur_height + 1)
         return max(left_height,right_height)
 
+    def deleteNode(self, node, data):
+        if node is None:
+            return node
+        if data < node.data:
+            node.left = self.deleteNode(node.left, data)
+        elif (data > node.data):
+            node.right = self.deleteNode(node.right, data)
+        else:
+            if node.left is None:
+                temp = node.right
+                node = None
+                return temp
+
+            elif node.right is None:
+                temp = node.left
+                node = None
+                return temp
+            temp = self.minValueNode(node.right)
+            node.data = temp.data
+            node.right = self.deleteNode(node.right, temp.data)
+        return node
+    def minValueNode(self,node):
+        current = node
+        while (current.left != None):
+            current = current.left
+        return current
+
 def fillTree(tree,elem=10,maxint=1000):
     from random import randint
     for int in range(elem):
         currElem=randint(0,maxint)
         tree.addNode(currElem)
+    tree.addNode(30)
 
 def main():
     tree=BST()
@@ -103,5 +131,8 @@ def main():
     tree.traverse_postOrder(tree.root)
     print("\n \ntree height: ", str(tree.height()))
     print("Number of Nodes in the tree is : ", tree.numberOfNodes(tree.root))
+    tree.deleteNode(tree.root,30)
+    tree.traverse_inOrder(tree.root)
+
 main()
 
